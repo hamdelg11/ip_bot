@@ -14,21 +14,13 @@
     
     <script>
         localStorage.clear();
-      
-          /**
-         * @param String name
-         * @return String
-         */
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-            
-          
-          var prodId = getParameterByName('prodId');
-          console.log(prodId);
-        }
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+          get: (searchParams, prop) => searchParams.get(prop),
+        });
+        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+        let value = params.some_key; // "some_value"
+        console.log(value);
     </script>
   </body>
 </html>
