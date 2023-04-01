@@ -9,12 +9,40 @@
   </head>
   <body>
 
-    <iframe src="https://script.google.com/macros/s/AKfycbyyInf5Si1xJgriJtvXsYjoO3Wn7JbDjPyxaQ6yxtEiwpc5KQM4-r6Fx0nrTCUB43xDSg/exec" style="border-style: none" width="100%" height="100%"></iframe>
+    <div id="iframe-container"></div>
       
     
     <script>
       
-       localStorage.clear();
+       window.addEventListener("load", cargarIframe);
+
+      function cargarIframe() {
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id"); // "valor1"
+
+        const iframeContainer = document.getElementById("iframe-container");
+
+        if (id != null) {
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://script.google.com/macros/s/AKfycbwN2YNZxsFJirpwHOze_gGXTg4IkRmJM-B0LQwzCUHoONo1eCO9J-UW7Vm5e9Q4TnnFrw/exec?id=${id}`;
+          iframe.width = "100%";
+          iframe.height = "500";
+          iframeContainer.appendChild(iframe);
+        } else {
+
+          const h1 = document.createElement("h1");
+
+          h1.innerHTML = "MANDA MSG AL BOT";
+
+          iframeContainer.appendChild(h1);
+
+
+  }
+
+  
+}
       
     </script>
   </body>
